@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<currencies xmlns="http://vldby.com/schema/currencies.xsd">
+    <currency name="rubles" symbol="р" position="POSTFIX" value="63.56"/>
+    <currency name="ien" symbol="i" position="POSTFIX" value="127.84"/>
+</currencies>

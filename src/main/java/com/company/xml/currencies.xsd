@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://vldby.com/schema/currencies.xsd"
+            xmlns="http://vldby.com/schema/currencies.xsd"
+            elementFormDefault="qualified">
+    <xsd:element name="currencies">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="currency" type="currencyType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+        <xsd:unique name="unique-name">
+            <xsd:selector xpath=".//*"/>
+            <xsd:field xpath="@name"/>
+        </xsd:unique>
+        <xsd:unique name="unique-symbol">
+            <xsd:selector xpath=".//*"/>
+            <xsd:field xpath="@symbol"/>
+        </xsd:unique>
+    </xsd:element>
+
+    <xsd:simpleType name="positionType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="PREFIX"/>
+            <xsd:enumeration value="POSTFIX"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="onlyChars">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-zA-zа-яА-я]+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="onlyNumber">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="^[^\d]$"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="currencyType">
+        <xsd:attribute name="name" type="onlyChars" use="required"/>
+        <xsd:attribute name="symbol" type="xsd:string" use="required"/>
+        <xsd:attribute name="position" type="positionType" use="required"/>
+        <xsd:attribute name="value" type="xsd:double" use="required"/>
+    </xsd:complexType>
+</xsd:schema>
