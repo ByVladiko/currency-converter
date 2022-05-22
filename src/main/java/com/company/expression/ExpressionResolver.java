@@ -76,8 +76,8 @@ public class ExpressionResolver {
         if (operationsStack.empty())
             return;
 
-        for (Lexeme lexeme : operationsStack) {
-            postfixResultStack.push(lexeme);
+        while (!operationsStack.empty()) {
+            postfixResultStack.push(operationsStack.pop());
         }
     }
 
